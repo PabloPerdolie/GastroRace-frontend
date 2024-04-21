@@ -21,7 +21,7 @@ function Entry(){
         //   setToken(response.data)
           console.log({token})
             
-          console.log('Успешная авторизация:', response.data)
+          //console.log('Успешная авторизация:', response.data)
           navigate("/main-page")
         } catch (error) {
           console.error('Ошибка авторизации:', error)
