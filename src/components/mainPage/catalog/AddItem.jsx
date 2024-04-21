@@ -17,7 +17,7 @@ function AddItem(){
     const handleClick = async (e) =>{
       e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:8080/admin/products/add", item, {
+            const response = await axios.post("https://gastrorace-backend.onrender.com/admin/products/add", item, {
               headers: {
                 'Authorization': `Bearer ${token.token}`}
               }

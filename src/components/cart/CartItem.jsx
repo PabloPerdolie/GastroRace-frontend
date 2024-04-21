@@ -9,7 +9,7 @@ function CartItem({item, data, setData}){
 
     const handleClick = async(e) => {
         try{
-            const response = await axios.post(`http://localhost:8080/cart/delete/${item.id}`,"", {
+            const response = await axios.post(`https://gastrorace-backend.onrender.com/cart/delete/${item.id}`,"", {
                 headers: {
                     'Authorization': `Bearer ${token.token}`}
                 })

@@ -11,7 +11,7 @@ function Item({item}){
         e.preventDefault()
         try{
 
-            const response = await axios.post(`http://localhost:8080/cart/add/${item.id}`,"", {
+            const response = await axios.post(`https://gastrorace-backend.onrender.com/cart/add/${item.id}`,"", {
                 headers: {
                     'Authorization': `Bearer ${token.token}`}
                 })

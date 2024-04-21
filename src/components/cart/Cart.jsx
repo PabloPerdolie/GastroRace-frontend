@@ -13,7 +13,7 @@ function Cart(){
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:8080/cart', 
+            const response = await axios.get('https://gastrorace-backend.onrender.com/cart', 
             {
               headers: {
                 'Authorization': `Bearer ${token.token}`

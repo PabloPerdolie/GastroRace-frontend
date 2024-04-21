@@ -15,7 +15,7 @@ function Registration(){
 
     const handleSubmit = async (e) => {
         try {
-          const response = await axios.post("http://localhost:8080/register", user)
+          const response = await axios.post("https://gastrorace-backend.onrender.com/register", user)
           navigate("/main-page") // пока что этой страницы нет, потому что вы еще ее не сделали++
         } catch (error) {
           console.error('Ошибка авторизации:', error)

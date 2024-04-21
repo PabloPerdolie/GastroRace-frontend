@@ -10,7 +10,7 @@ const ImageComponent = ({path}) => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/image/${path}`, 
+        const response = await fetch(`https://gastrorace-backend.onrender.com/image/${path}`, 
         {
           headers: {
           Authorization: `Bearer ${token.token}`}

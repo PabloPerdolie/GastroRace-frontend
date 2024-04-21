@@ -17,12 +17,12 @@ function Entry(){
     
     const handleSubmit = async (e) => {
         try {
-          const response = await axios.post("http://localhost:8080/login", user)
-          setToken(response.data)
+        //   const response = await axios.post("https://gastrorace-backend.onrender.com/login", user)
+        //   setToken(response.data)
           console.log({token})
             
           console.log('Успешная авторизация:', response.data)
-          navigate("/main-page") // пока что этой страницы нет, потому что вы еще ее не сделали
+          navigate("/main-page")
         } catch (error) {
           console.error('Ошибка авторизации:', error)
         }
@@ -32,8 +32,8 @@ function Entry(){
         <div className="entry-main">
             <h2>Entry</h2>
             <form>
-                <input type="text" id="login-entry" value={user.email} onChange={event => setUser({...user, email: event.target.value})} required />
-                <input type="password" id="password-entry" value={user.password} onChange={event => setUser({...user, password: event.target.value})} required />
+                <input type="text" id="login-entry" value={user.email} onChange={event => setUser({...user, email: event.target.value})} required placeholder="login" />
+                <input type="password" id="password-entry" value={user.password} onChange={event => setUser({...user, password: event.target.value})} required placeholder="password"/>
                 <Link to="/registration">Wanna create an account?</Link>
                 <button id="entry"
                 onClick={(event)=>{
