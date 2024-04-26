@@ -1,24 +1,29 @@
- import React, { useState } from "react";
-import axios from "axios";
+ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import instance from "../../../axios/Axios";
 
 
 function Registration(){
     const [user, setUser] = useState({
-        name: "",
+        username: "",
         password: "",
-        email: ""
+        email: "",
     })
 
     const navigate = useNavigate()
 
+    const { token, setToken } = useContext(AuthContext);
+
     const handleSubmit = async (e) => {
         try {
-          const response = await axios.post("https://gastrorace-backend.onrender.com/register", user)
-          navigate("/main-page") // пока что этой страницы нет, потому что вы еще ее не сделали++
+            const response = await instance.post(`/auth/signup`, user)
+            setToken(response.data)
+            console.log({token})
+            navigate("/main-page") 
         } catch (error) {
-          console.error('Ошибка авторизации:', error)
+            console.error('Ошибка авторизации:', error)
         }
     };
 
@@ -26,17 +31,16 @@ function Registration(){
         <div className="registration-main">
             <h2>Registration</h2>
             <form>
-                <input type="text" id="login" value={user.name} onChange={event => setUser({...user, name: event.target.value})} required placeholder="name"/>
+                <input type="text" id="login" value={user.username} onChange={event => setUser({...user, username: event.target.value})} required placeholder="name"/>
                 <input type="email" id="email" value={user.email} onChange={event => setUser({...user, email: event.target.value})} required placeholder="email" />
                 <input type="password" id="password" value={user.password} onChange={event => setUser({...user, password: event.target.value})} placeholder="Password" required />
-                <input type="password" id="password" placeholder="Submit password" required />
+                <input type="password" id="submit" placeholder="Submit password" required />
                 <Link to="/">Already have an account?</Link>
                 <button id="register"
                     onClick={(event) => {
                         event.preventDefault()
                         console.log(user)
                         handleSubmit()
-                        // navigate("/main-page")
                     }}
                 >Register</button>
             </form>

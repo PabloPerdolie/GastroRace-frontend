@@ -28,18 +28,18 @@ body{
   .item-image {
     width: 200px;
     height: 200px;
-    object-fit: cover;
+    object-fit: scale-down;
     border-radius: 8px;
   }
   
   .item-name {
     font-size: 30px;
-    margin: 6px;
+    margin: 0px;
   }
   
-  .item-price, .item-category {
-    font-size: 16px;
-    margin: 6px;
+  .item-price, .item-type {
+    font-size: 18px;
+    margin: 3px;
   }
   
   .item-button {

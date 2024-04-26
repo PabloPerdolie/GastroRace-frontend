@@ -13,7 +13,8 @@ function Item({item}){
 
             const response = await axios.post(`https://gastrorace-backend.onrender.com/cart/add/${item.id}`,"", {
                 headers: {
-                    'Authorization': `Bearer ${token.token}`}
+                    'Authorization': `Bearer ${token.token}`
+                }
                 })
             console.log("Succeed")
         }catch(error){
@@ -24,10 +25,8 @@ function Item({item}){
 
     const find = () => {
         try{
-            
-            const path = item.images[0].url.slice(10,)
-            console.log(path)
-            return path
+            const imagebytes = item.image_data
+            return imagebytes
         } catch(error){
             console.log(error)
         }
@@ -37,9 +36,9 @@ function Item({item}){
     return(
         <li className="item">
             <h1 className="item-name">{item.name}</h1>
-            <p className="item-category">{item.category}</p>
+            <p className="item-type">{item.type}</p>
             <p className="item-price">{item.price} руб.</p>
-            <ImageComponent path={find()}/>
+            <ImageComponent imagebytes={find()}/>
             <button className="item-button" onClick={(e)=>handleClick(e)}>ADD TO CART</button>
         </li>
     )
