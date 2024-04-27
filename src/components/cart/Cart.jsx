@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Nav from "../mainPage/Nav";
-import Item from "../mainPage/catalog/Item";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios";
 import CartItem from "./CartItem";
+import instance from "../../axios/Axios";
 
 function Cart(){
 
@@ -13,10 +12,10 @@ function Cart(){
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('https://gastrorace-backend.onrender.com/cart', 
+            const response = await instance.get('/api/v1/cart', 
             {
               headers: {
-                'Authorization': `Bearer ${token.token}`
+                'Authorization': `Bearer ${token}`
               }
             });
             setData(response.data);

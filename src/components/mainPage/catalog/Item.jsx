@@ -1,22 +1,21 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import ImageComponent from "./ImageComponent";
+import instance from "../../../axios/Axios";
 
 function Item({item}){
     const { token, setToken } = useContext(AuthContext);
-
 
     const handleClick = async(e) => {
         e.preventDefault()
         try{
 
-            const response = await axios.post(`https://gastrorace-backend.onrender.com/cart/add/${item.id}`,"", {
+            const response = await instance.post(`/api/v1/cart/add?id=${item.id}`, "", {
                 headers: {
-                    'Authorization': `Bearer ${token.token}`
+                    'Authorization': `Bearer ${token}`
                 }
-                })
-            console.log("Succeed")
+            })
+            console.log(response.data)
         }catch(error){
             console.log(error)
         }
