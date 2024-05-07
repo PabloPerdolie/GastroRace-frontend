@@ -1,6 +1,7 @@
 .navigation {
     background-color: #ececec;
     padding: 16px;
+    font-size: 18px;
   }
   
   .navigation-list {
@@ -11,7 +12,7 @@
   }
   
   .navigation-item {
-    margin-right: 16px;
+    margin-right: 25px;
   }
   
   .navigation-item * {

@@ -8,9 +8,9 @@ function Nav(){
                     <ul className="navigation-list">
                         <li className="navigation-item">{<Link to="/cart">Cart</Link>}</li>
                         <li className="navigation-item">{<Link to="/main-page">Catalog</Link>}</li>
-                        <li className="navigation-item">{<Link to="/add-item">Add item</Link>}</li>
+                        <li className="navigation-item">{<Link to="/orders">Orders</Link>}</li>
                         <li className="navigation-item">{<Link to="/">Log out</Link>}</li>
-                        
+                        <li className="navigation-item">{<Link to="/add-item">Add item</Link>}</li>
                     </ul>
                 </div>
         </nav>

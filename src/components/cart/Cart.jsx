@@ -11,21 +11,33 @@ function Cart(){
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await instance.get('/api/v1/cart', 
-            {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            });
-            setData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
+            try {
+                const response = await instance.get('/api/v1/cart', 
+                {
+                    headers: {
+                      'Authorization': `Bearer ${token}`
+                    }
+                });
+                setData(response.data);
+                console.log(data)
+            } catch (error) {
+                console.error(error);
+            }
         };
     
         fetchData();
-      }, []);
+    }, []);
+
+    const handleSubmit = async (e) => {
+        try {
+            const response = await instance.post('/api/v1/order', )
+            
+            //console.log('Success order:', response.data)
+            setData([])
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    };
     
     
 
@@ -36,12 +48,15 @@ function Cart(){
             <h2 className="cart-title">Cart</h2>
             <ul className="cart-items">
                 {data.map((item) => (
-                  <li key={item.id} >
-                    <CartItem item={item} data={data} setData={setData}/>
-                  </li>
+                    <li key={item.id} >
+                        <CartItem item={item} data={data} setData={setData}/>
+                    </li>
                 ))}
             </ul>
-            <button className="checkout-btn">ORDER</button>
+            <button className="checkout-btn" onClick={(event)=>{
+                    event.preventDefault()
+                    handleSubmit()
+                }}>ORDER</button>
         </div>
     )
 }

@@ -7,6 +7,7 @@ import Registration from "./components/authentification/registration/Registratio
 import { AuthProvider } from "./components/context/AuthContext";
 import AddItemPage from "./components/mainPage/AddItemPage";
 import "./App.css"
+import OrdersPage from "./components/mainPage/OrdersPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/main-page" element={<MainPage/>}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
           <Route path="/add-item" element={<AddItemPage/>}></Route>
+          <Route path="/orders" element={<OrdersPage/>}></Route>
         </Routes>
       </BrowserRouter>
       </AuthProvider>

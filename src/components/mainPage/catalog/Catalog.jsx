@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import Item from "./Item";
-import axios from "axios";
 import Nav from "../Nav";
 import { AuthContext } from "../../context/AuthContext";
 import instance from "../../../axios/Axios";
