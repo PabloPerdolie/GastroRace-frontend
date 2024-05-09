@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../../app_state/store/actionCreators/itemActions";
