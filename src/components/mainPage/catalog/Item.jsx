@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
 import ImageComponent from "./ImageComponent";
-import instance from "../../../axios/Axios";
+import Cookies from "universal-cookie";
+import instance from "../../../app_state/axios";
 
 function Item({item}){
-    const { token, setToken } = useContext(AuthContext);
+
+    const cookies = new Cookies()
 
     const handleClick = async(e) => {
         e.preventDefault()
@@ -12,7 +13,7 @@ function Item({item}){
 
             const response = await instance.post(`/api/v1/cart/add?id=${item.id}`, "", {
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${cookies.get('token')}`
                 }
             })
             console.log(response.data)

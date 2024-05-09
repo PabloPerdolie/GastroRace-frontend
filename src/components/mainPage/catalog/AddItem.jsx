@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import instance from "../../../axios/Axios";
+import { useDispatch } from "react-redux";
 
 function AddItem(){
 
@@ -10,12 +9,11 @@ function AddItem(){
         desc: "",
         type: "",
         price: "",
-    }
-    )
+    })
+
+    const dispatch = useDispatch()
 
     const imageRef = useRef()
-
-    const { token, setToken } = useContext(AuthContext);
 
     const [selectedImage, setSelectedImage] = useState();
 
@@ -27,33 +25,15 @@ function AddItem(){
 
     const handleImage = async (e) => {
         e.preventDefault();
-        try {
-            const formData = new FormData();
-            formData.append('file', selectedImage);
-            formData.append('name', item.name);
-            formData.append('desc', item.desc);
-            formData.append('price', item.price);
-            formData.append('type', item.type);
-            console.log(formData.getAll('file'))
-            console.log(token.token)
-            //const response = await axios.post(`https://gastrorace-backend.onrender.com/api/v1/products`,
-            const response = await instance.post(`/api/v1/products`,
-            formData
-            , {
-              headers: {
-                  Authorization: `Bearer ${token}`,
-                  'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
-              }
-            }
-            );
-            navigate("/main-page")
-          
-            console.log('Успешная загрузка:', response.data);
-        } catch (error) {
-
-            console.error('Ошибка загрузки:', error);
-        }
-      };
+        const formData = new FormData();
+        formData.append('file', selectedImage);
+        formData.append('name', item.name);
+        formData.append('desc', item.desc);
+        formData.append('price', item.price);
+        formData.append('type', item.type);
+        dispatch(AddItem(formData))
+        navigate("/main-page")
+    };
 
     return(
         <div className="add-item-main">

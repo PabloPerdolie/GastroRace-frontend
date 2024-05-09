@@ -4,8 +4,9 @@ const authSlice = createSlice({
     name: 'authSlice',
     initialState: {
         loading: false,
-        // userData: null,
-        error: null
+        userData: null,
+        error: null,
+        admin: false
     },
     reducers: {
         authLoading(state) {
@@ -14,7 +15,13 @@ const authSlice = createSlice({
         }, 
         authSuccess(state, action) {
             state.loading = false
-            // state.userData = action.payload
+            state.userData = true
+            state.admin = action.payload
+        },
+        removeAccess(state) {
+            state.loading = false
+            state.userData = null
+            state.admin = false
         },
         authError(state, action) {
             state.loading = false
@@ -26,9 +33,10 @@ const authSlice = createSlice({
 export const {
     authLoading,
     authSuccess,
-    authError
+    authError,
+    removeAccess
 } = authSlice.actions
 
-// export const selectUserData = (state) => state.auth.userData
+export const selectUserData = (state) => state.auth
 
 export default authSlice.reducer

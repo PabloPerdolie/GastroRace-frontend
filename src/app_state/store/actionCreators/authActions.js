@@ -1,52 +1,43 @@
 import Cookies from "universal-cookie"
-import AuthService from "../../axios/Auth"
-import { authError, authLoading, authSuccess } from "../reducers/authSlice"
+import { authError, authLoading, authSuccess, removeAccess } from "../reducers/authSlice"
 import { jwtDecode } from "jwt-decode"
+import AuthService from "../../axios/Auth"
 
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     dispatch(authLoading())
     try {
-        const { data } = await AuthService.login(email, password)
+        const { data } = await AuthService.login(username, password)
         const cookies = new Cookies()
-        cookies.set('token', data.accessToken, jwtDecode(data.accessToken).exp)
-        dispatch(authSuccess(data))
+        console.log(data)
+        cookies.set('token', data.token, jwtDecode(data.token).exp)
+        cookies.set('isAdmin', data.IsAdmin, jwtDecode(data.token).exp)
+        dispatch(authSuccess(data.IsAdmin))
     } catch (error) {
+        console.log(error)
         dispatch(authError(error.message))
     }
 }
 
-export const registration = (email, password) => async (dispatch) => {
+export const registration = (username, password, email) => async (dispatch) => {
     dispatch(authLoading())
     try {
-        const { data } = await AuthService.registration(email, password)
+        const { data } = await AuthService.registration(username, password, email)
         const cookies = new Cookies()
-        cookies.set('token', data.accessToken, jwtDecode(data.accessToken).exp)
-        dispatch(authSuccess(data))
+        cookies.set('token', data.token, jwtDecode(data.token).exp)
+        dispatch(authSuccess(false))
     } catch (error) {
         dispatch(authError(error.message))
-    }
-}
-
-export const checkAuthority = () => async (dispatch) => {
-    dispatch(authLoading())
-    try {
-        const { data } = await AuthService.refresh()
-        const cookies = new Cookies()
-        cookies.set('token', data.accessToken, jwtDecode(data.accessToken).exp)
-        dispatch(authSuccess(data))
-    } catch (error) {
-        dispatch(authSuccess(null))
     }
 }
 
 export const logout = () => async (dispatch) => {
     dispatch(authLoading())
     try {
-        await AuthService.logout()
         const cookies = new Cookies()
         cookies.remove('token')
-        dispatch(authSuccess(null))
+        cookies.remove('isAdmin')
+        dispatch(removeAccess())
     } catch (error) {
         dispatch(authError(error.message))
     }

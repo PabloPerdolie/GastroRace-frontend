@@ -9,9 +9,9 @@ const instance = axios.create({
     //baseURL: "https://gastrorace-backend.onrender.com"
 })
 
-// instance.interceptors.request.use( config => {
-//     //config.headers.Authorization = `Bearer ${cookies.get('token')}`
-// }
-// )
+instance.interceptors.request.use( config => {
+    config.headers.Authorization = `Bearer ${cookies.get('token')}`
+    return config
+})
 
 export default instance

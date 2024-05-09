@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import instance from "../../../axios/Axios";
+import { login } from "../../../app_state/store/actionCreators/authActions";
+import { useDispatch } from "react-redux";
 
 
 
@@ -11,22 +11,9 @@ function Entry(){
         password: ""
     })
 
-    const { token, setToken } = useContext(AuthContext);
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
-    
-    const handleSubmit = async (e) => {
-        try {
-            const response = await instance.post('/auth/signin', user)
-            setToken(response.data)
-            console.log({token})
-
-            console.log('Успешная авторизация:', response.data)
-            navigate("/main-page")
-        } catch (error) {
-            console.error('Ошибка авторизации:', error)
-        }
-    };
 
     return(
         <div className="entry-main">
@@ -38,7 +25,8 @@ function Entry(){
                 <button id="entry"
                 onClick={(event)=>{
                     event.preventDefault()
-                    handleSubmit()
+                    dispatch(login(user.username, user.password))
+                    navigate('/main-page')
                 }}>Entry</button>            
             </form>
             

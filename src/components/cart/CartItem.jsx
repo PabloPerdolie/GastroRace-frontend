@@ -1,29 +1,16 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import instance from "../../axios/Axios";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteCart } from "../../app_state/store/actionCreators/cartActions";
 
 
-function CartItem({item, data, setData}){
-    
-    const { token, setToken } = useContext(AuthContext);
+function CartItem({item}){
 
-    console.log(data)
+    const dispatch = useDispatch()
 
-    const handleClick = async(e) => {
-        try{
-            const response = await instance.post(`/api/v1/cart/remove?id=${item.id}`,"", {
-                headers: {
-                    'Authorization': `Bearer ${token}`}
-            })
-            console.log(response.data)
-            setData(data.filter(clothes=>clothes.id !== item.id))
-        }catch(error){
-            console.log(error)
-        }
-
+    const handleClick = async (e) => {
+        e.preventDefault()
+        dispatch(deleteCart(item.id))
     }
-
-    
 
     return(
         <li className="cart-item">

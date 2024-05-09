@@ -1,31 +1,18 @@
- import React, { useContext, useState } from "react";
+ import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import instance from "../../../axios/Axios";
+import { registration } from "../../../app_state/store/actionCreators/authActions";
+import { useDispatch } from "react-redux";
 
 
 function Registration(){
+
     const [user, setUser] = useState({
         username: "",
         password: "",
         email: "",
     })
 
-    const navigate = useNavigate()
-
-    const { token, setToken } = useContext(AuthContext);
-
-    const handleSubmit = async (e) => {
-        try {
-            const response = await instance.post(`/auth/signup`, user)
-            setToken(response.data)
-            console.log({token})
-            navigate("/main-page") 
-        } catch (error) {
-            console.error('Ошибка авторизации:', error)
-        }
-    };
+    const dispatch = useDispatch()
 
     return(
         <div className="registration-main">
@@ -40,12 +27,13 @@ function Registration(){
                     onClick={(event) => {
                         event.preventDefault()
                         console.log(user)
-                        handleSubmit()
+                        dispatch(registration(user.username, user.password, user.email))
                     }}
                 >Register</button>
             </form>
             
-        </div>)
+        </div>
+    )
 }
 
 export default Registration;

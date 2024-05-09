@@ -1,6 +1,4 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useEffect, useState } from 'react';
 
 const ImageComponent = ({imagebytes}) => {
     const [imageUrl, setImageUrl] = useState('');
