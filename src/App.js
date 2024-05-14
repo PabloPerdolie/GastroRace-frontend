@@ -25,6 +25,8 @@ function App() {
         }
     }, [])
 
+    console.log(process.env);
+
     const auth = useSelector(selectUserData)
 
     return (
