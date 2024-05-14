@@ -11,11 +11,11 @@ export const getCart = () => async (dispatch) => {
     }
 }
 
-export const addCart = (id) => async (dispatch) => {
+export const addCart = (item) => async (dispatch) => {
     try {
-        const { data } = await CartService.cartAdd(id)
+        const { data } = await CartService.cartAdd(item.id)
         console.log(data)
-        dispatch(addCartSuccess(id))
+        dispatch(addCartSuccess(item))
     } catch(error) {
         dispatch(cartError(error.message))
     }

@@ -11,7 +11,7 @@ const orderSlice = createSlice({
             state.orderList = action.payload
         },
         addOrderSuccess: (state, action) => {
-            state.orderList = [action.payload, ...state.orderList]
+            state.orderList = [...state.orderList, action.payload]
         },
         orderError: (state, action) => {
             state.error = action.payload

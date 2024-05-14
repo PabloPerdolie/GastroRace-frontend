@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { addItem } from "../../../app_state/store/actionCreators/itemActions";
 
 function AddItem(){
 
@@ -8,7 +9,7 @@ function AddItem(){
         name: "",
         desc: "",
         type: "",
-        price: "",
+        price: ""
     })
 
     const dispatch = useDispatch()
@@ -21,8 +22,6 @@ function AddItem(){
         setSelectedImage(e.target.files[0]);
     };
 
-    const navigate = useNavigate()
-
     const handleImage = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -31,14 +30,22 @@ function AddItem(){
         formData.append('desc', item.desc);
         formData.append('price', item.price);
         formData.append('type', item.type);
-        dispatch(AddItem(formData))
-        navigate("/main-page")
+        dispatch(addItem(formData))
+        if (imageRef.current) {
+            imageRef.current.value = null
+        }
+        setItem({
+            name: "",
+            desc: "",
+            type: "",
+            price: ""
+        })
     };
 
     return(
         <div className="add-item-main">
             <h2>Add new item</h2>
-            <form>
+            <form on>
                 <input type="text" id="name" value={item.name} onChange={e => setItem({...item, name: e.target.value})} placeholder="name"/>
                 <input type="text" id="decription" value={item.desc} onChange={e => setItem({...item, desc: e.target.value})} placeholder="description"/>
                 <input type="text" id="category" value={item.type} onChange={e => setItem({...item, type: e.target.value})} placeholder="category"/>

@@ -11,7 +11,7 @@ const itemsSlice = createSlice({
             state.itemsList = action.payload
         },
         createItemSuccess: (state, action) => {
-            state.itemsList = [action.payload, ...state.itemsList]
+            state.itemsList = [...state.itemsList, action.payload]
         },
         deleteItemSuccess: (state, action) => {
             state.itemsList = state.itemsList.filter(item => item.id !== action.payload)

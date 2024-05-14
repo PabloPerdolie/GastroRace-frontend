@@ -11,7 +11,8 @@ const cartSlice = createSlice({
             state.cartList = action.payload
         },
         addCartSuccess: (state, action) => {
-            state.cartList = [action.payload, ...state.cartList]
+            state.cartList = [...state.cartList, action.payload]
+            console.log(state.cartList);
         },
         deleteCartSuccess: (state, action) => {
             state.cartList = state.cartList.filter(item => item.id !== action.payload)

@@ -8,11 +8,11 @@ function Catalog(){
 
     const dispatch = useDispatch()
 
-    const itemsSel = useSelector(selectItems)
-
     useEffect(() => {
         dispatch(getItems())
     }, []);
+
+    const itemsSel = useSelector(selectItems)
 
     return(
         <div className="catalog">
