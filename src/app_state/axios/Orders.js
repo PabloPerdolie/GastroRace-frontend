@@ -1,8 +1,8 @@
 import instance from ".";
 
 export default class OrderService {
-    static async addOrder(id) {
-        //return instance.post(`/api/v1/cart/add?id=${id}`, "")
+    static async addOrder(id, items) {
+        return instance.post(`/api/v1/orders`, "")
     }
 
     static async getOrders() {

@@ -2,25 +2,23 @@ import React from "react";
 import ImageComponent from "./ImageComponent";
 import Cookies from "universal-cookie";
 import instance from "../../../app_state/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItem } from "../../../app_state/store/actionCreators/itemActions";
+import { addCart } from "../../../app_state/store/actionCreators/cartActions";
+import { selectUserData } from "../../../app_state/store/reducers/authSlice";
 
 function Item({item}){
 
-    const cookies = new Cookies()
+    const dispatch = useDispatch()
 
-    const handleClick = async(e) => {
+    const handleClickAddCart = async(e) => {
         e.preventDefault()
-        try{
+        dispatch(addCart(item.id))
+    }
 
-            const response = await instance.post(`/api/v1/cart/add?id=${item.id}`, "", {
-                headers: {
-                    'Authorization': `Bearer ${cookies.get('token')}`
-                }
-            })
-            console.log(response.data)
-        }catch(error){
-            console.log(error)
-        }
-
+    const handleClickDeleteItem = async(e) => {
+        e.preventDefault()
+        dispatch(deleteItem(item.id))
     }
 
     const find = () => {
@@ -32,14 +30,17 @@ function Item({item}){
         }
     }
     
-
+    const auth = useSelector(selectUserData)
     return(
         <li className="item">
             <h1 className="item-name">{item.name}</h1>
             <p className="item-type">{item.type}</p>
             <p className="item-price">{item.price} руб.</p>
             <ImageComponent imagebytes={find()}/>
-            <button className="item-button" onClick={(e)=>handleClick(e)}>ADD TO CART</button>
+            {auth.admin ?
+            <button className="item-button-delete-item" onClick={(e)=>handleClickDeleteItem(e)}>DELETE</button>
+            : <button className="item-button-cart-add" onClick={(e)=>handleClickAddCart(e)}>ADD TO CART</button>
+            }
         </li>
     )
 }
