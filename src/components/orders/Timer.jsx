@@ -6,10 +6,11 @@ export const Timer = ({deliveryDate}) => {
     const [timer, setTimer] = useState(deliveryDate.getTime() - new Date().getTime())
 
     useEffect(() => {
-        console.log(timer, deliveryDate, new Date());
-        setTimeout(() => {
-            setTimer(deliveryDate.getTime() - new Date().getTime())
-        }, 1000*10)
+        if (timer > 0) {
+            setTimeout(() => {
+                setTimer(deliveryDate.getTime() - new Date().getTime())
+            }, 1000*60)
+        }
     }, [timer])
 
 

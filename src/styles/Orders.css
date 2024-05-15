@@ -7,7 +7,7 @@
 .order-title {
   font-size: 24px;
   color: #333;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .orders-items {
@@ -58,6 +58,10 @@
   color: #333;
 }
 
+.order-products {
+  padding: 0;
+}
+
 .order-products li {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -68,4 +72,8 @@
 
 .order-product-price {
   color: #555;
+}
+
+.table-header  {
+  margin: 0;
 }
