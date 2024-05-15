@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../../app_state/store/reducers/cartSlice";
 import { getCart } from "../../app_state/store/actionCreators/cartActions";
+import { addOrder } from "../../app_state/store/actionCreators/orderActions";
 
 function Cart(){
 
@@ -14,6 +15,11 @@ function Cart(){
     useEffect(() => {
         dispatch(getCart())
     }, []);
+
+    const HandleClick = (e) => {
+        e.preventDefault()
+        dispatch(addOrder(cartSel))
+    }
 
     return(
         <div className="cart-main">
@@ -26,7 +32,7 @@ function Cart(){
                     </li>
                 ))}
             </ul>
-            <button className="checkout-btn" onClick={(event)=>{event.preventDefault()}}>ORDER</button>
+            <button className="checkout-btn" onClick={(event)=>HandleClick(event)}>ORDER</button>
         </div>
     )
 }

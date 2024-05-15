@@ -1,0 +1,71 @@
+/* OrdersPage.css */
+
+.order-main {
+  padding: 20px;
+}
+
+.order-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.orders-items {
+  list-style: none;
+  padding: 0;
+}
+
+/* OrderItem.css */
+
+.order-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 2fr;
+  justify-content: start;
+  align-items: start;
+}
+
+.order-item-date {
+  font-size: 16px;
+  color: #555;
+}
+
+.order-item-timer {
+  font-size: 16px;
+  color: #555;
+}
+
+.order-item-status {
+  font-size: 16px;
+  color: #007bff;
+}
+
+.order-item-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.order-product-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.order-products li {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: start;
+  align-items: center;
+  list-style: none;
+}
+
+.order-product-price {
+  color: #555;
+}

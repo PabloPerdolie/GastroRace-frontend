@@ -13,13 +13,13 @@ function CartItem({item}){
     }
 
     return(
-        <li className="cart-item">
+        <div className="cart-item">
             <div className="item-details"> 
                 <h3 className="cart-item-name">{item.name}</h3>
                 <p className="cart-item-price">{item.price}</p>
             </div>
             <button className="item-button" onClick={(e)=>handleClick(e)}>DELETE</button>
-        </li>
+        </div>
     )
 }
 export default CartItem;

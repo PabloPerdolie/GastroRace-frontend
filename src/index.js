@@ -5,6 +5,7 @@ import "./styles/Login.css"
 import "./styles/Nav.css"
 import "./styles/AdItemPage.css"
 import "./styles/Cart.css"
+import "./styles/Orders.css"
 
 import App from './App';
 import { Provider } from 'react-redux';

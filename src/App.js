@@ -6,10 +6,10 @@ import Entry from "./components/authentification/entry/Entry";
 import Registration from "./components/authentification/registration/Registration";
 import AddItemPage from "./components/mainPage/AddItemPage";
 import "./App.css"
-import OrdersPage from "./components/mainPage/OrdersPage";
 import { useDispatch, useSelector } from "react-redux";
 import { authSuccess, selectUserData } from "./app_state/store/reducers/authSlice";
 import Cookies from "universal-cookie";
+import OrdersPage from "./components/orders/Orders";
 
 
 function App() {
