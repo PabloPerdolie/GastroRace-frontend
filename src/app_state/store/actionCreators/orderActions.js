@@ -23,3 +23,23 @@ export const addOrder = (items) => async (dispatch) => {
         dispatch(orderError(error))
     }
 }
+
+export const getAllOrders = () => async (dispatch) => {
+    try {
+        const { data } = await OrderService.getAllOrders()
+        dispatch(getOrdersSuccess(data))
+        console.log(data)
+    } catch(error) {
+        dispatch(orderError(error))
+    }
+}
+
+export const setOrderStatus = (status) => async (dispatch) => {
+    try {
+        const { data } = await OrderService.getOrders()
+        dispatch(getOrdersSuccess(data))
+        console.log(data)
+    } catch(error) {
+        dispatch(orderError(error))
+    }
+}

@@ -1,5 +1,5 @@
  import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registration } from "../../../app_state/store/actionCreators/authActions";
 import { useDispatch } from "react-redux";
 
@@ -13,6 +13,8 @@ function Registration(){
     })
 
     const dispatch = useDispatch()
+
+    const navigate = useNavigate()
 
     return(
         <div className="registration-main">
@@ -28,6 +30,7 @@ function Registration(){
                         event.preventDefault()
                         console.log(user)
                         dispatch(registration(user.username, user.password, user.email))
+                        navigate('/main-page')
                     }}
                 >Register</button>
             </form>

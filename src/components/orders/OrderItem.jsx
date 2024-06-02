@@ -1,4 +1,5 @@
 import { Timer } from "./Timer"
+import moment from 'moment';
 
 export const OrderItem = ({item}) => {
 
@@ -8,7 +9,7 @@ export const OrderItem = ({item}) => {
     return (
             <li className="order-item">
                 <div className="order-item-details"> 
-                    <h3 className="order-item-date">{item.order_date.toString()}</h3>
+                    <h3 className="order-item-date">{moment(item.order_date).format('MMM Do YYYY, h:mm')}</h3>
                     <h3 className="order-item-timer"><Timer deliveryDate={deliveryDate}/></h3>
                     <h3 className="order-item-status">{item.status}</h3>
                     <p className="order-item-price">{item.sum} руб.</p>

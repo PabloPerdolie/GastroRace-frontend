@@ -2,17 +2,24 @@ import React, { useEffect } from "react";
 import { OrderItem } from "./OrderItem";
 import { useDispatch, useSelector } from "react-redux";
 import { selectOrders } from "../../app_state/store/reducers/orderSlice";
-import { getOrders } from "../../app_state/store/actionCreators/orderActions";
+import { getAllOrders, getOrders } from "../../app_state/store/actionCreators/orderActions";
 import Nav from "../mainPage/Nav";
+import { selectUserData } from "../../app_state/store/reducers/authSlice";
 
 function OrdersPage(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getOrders())
+        if (authSel.admin) {
+            dispatch(getAllOrders())
+        } else {
+            dispatch(getOrders())
+        }
     }, []);
 
     const orderSel = useSelector(selectOrders)
+
+    const authSel = useSelector(selectUserData)
 
     return(
         <div>

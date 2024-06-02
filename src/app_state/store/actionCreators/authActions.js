@@ -24,7 +24,7 @@ export const registration = (username, password, email) => async (dispatch) => {
     try {
         const { data } = await AuthService.registration(username, password, email)
         const cookies = new Cookies()
-        cookies.set('token', data.token, jwtDecode(data.token).exp)
+        cookies.set('token', data, jwtDecode(data).exp)
         dispatch(authSuccess(false))
     } catch (error) {
         dispatch(authError(error.message))
